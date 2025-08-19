@@ -8,16 +8,22 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 
 def exchage():
-    try:
-        currency=enty.get().upper()
-        url=f'https://api.exchangerate-api.com/v4/latest/{currency}'
-        response=requests.get(url)
-        data=json.loads(response.text)
-        rate=data['rates']['USD']
-        mb.showinfo('Курс обмена', f'1 {currency} = {rate} USD')
-    except:
-        mb.showerror('Ошибка', 'Неверный код валюты')
-
+    code = enty.get().upper()
+    if code:
+        try:
+            response=requests.get('https://open.er-api.com/v6/latest/USD')
+            response.raise_for_status()
+            data=response.json()
+            if code in data['rates']:
+                exchage_rate=data['rates'][code]
+                #c_name=cur[code]
+                mb.showinfo('Курс обмена', f' Курс : {exchage_rate:.2f} {code} за  один доллар' )
+            else:
+                mb.showerror('Ошибка!', f' Валюта {code} не найдена')
+        except Exception as e :
+            mb.showerror('ощибка', f'Произошла ошибка : {e}')
+    else:
+        mb.showwarning('Внимание!', f'введите  код валюты')      
 window=Tk()
 window.title('Курсы обмена валют')
 window.geometry('360x180')
