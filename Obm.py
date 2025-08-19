@@ -6,10 +6,16 @@ from tkinter import*
 from tkinter import ttk
 
 from tkinter import messagebox as mb
-def update_c_label(event):
+
+def update_b_label(event):
+    code=b_combobox.get()
+    name=cur[code]
+    b_label.config(text=name)
+
+def update_t_label(event):
     code=t_combobox.get()
     name=cur[code]
-    c_label.config(text=name)
+    t_label.config(text=name)
 
 
 def exchage():
@@ -45,13 +51,17 @@ Label(text='Базовая валюта').pack(padx=10,pady=10)
 b_combobox=ttk.Combobox(values=list(cur.keys()))
 b_combobox.pack(padx=10, pady=10)
 
+b_combobox.bind("<<ComboboxSelected>>",update_b_label)
+b_label=ttk.Label()
+b_label.pack(padx=10,pady=10)
+
 Label(text='Целевая валюта').pack(padx=10,pady=10)
 t_combobox=ttk.Combobox(values=list(cur.keys()))
-t_combobox.bind("<<ComboboxSelected>>",update_c_label)
+t_combobox.bind("<<ComboboxSelected>>",update_t_label)
 t_combobox.pack(padx=10, pady=10)
 
-c_label=ttk.Label()
-c_label.pack(padx=10,pady=10)
+t_label=ttk.Label()
+t_label.pack(padx=10,pady=10)
 
 Button(text='Получить курс обмена ', command=exchage).pack(padx=10,pady=10)
 
