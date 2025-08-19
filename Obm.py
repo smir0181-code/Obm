@@ -43,10 +43,7 @@ window.title('Курсы обмена валют')
 window.geometry('360x300')
 Label(text='Базовая валюта').pack(padx=10,pady=10)
 b_combobox=ttk.Combobox(values=list(cur.keys()))
-
 b_combobox.pack(padx=10, pady=10)
-
-
 
 Label(text='Целевая валюта').pack(padx=10,pady=10)
 t_combobox=ttk.Combobox(values=list(cur.keys()))
