@@ -8,7 +8,7 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 
 def exchage():
-    code = enty.get().upper()
+    code = combobox.get()
     if code:
         try:
             response=requests.get('https://open.er-api.com/v6/latest/USD')
@@ -23,13 +23,16 @@ def exchage():
         except Exception as e :
             mb.showerror('ощибка', f'Произошла ошибка : {e}')
     else:
-        mb.showwarning('Внимание!', f'введите  код валюты')      
+        mb.showwarning('Внимание!', f'введите  код валюты')
+cur= ['USD','EUR','RUB','CNY','JPY']     
 window=Tk()
 window.title('Курсы обмена валют')
 window.geometry('360x180')
-Label(text='Введите код валюты').pack(padx=10,pady=10)
-enty=Entry()
-enty.pack(padx=10, pady=10)
+Label(text='Выберите код валюты').pack(padx=10,pady=10)
+combobox=ttk.Combobox(values=cur)
+combobox.pack(padx=10, pady=10)
+# enty=Entry()
+# enty.pack(padx=10, pady=10)
 
 Button(text='Получить курс обмена к доллару', command=exchage).pack(padx=10,pady=10)
 
