@@ -5,7 +5,7 @@ import pprint  # Библиотека для красивого вывода д�
 from tkinter import*  # Импорт всех элементов GUI библиотеки tkinter
 from tkinter import ttk  # Импорт современных виджетов tkinter
 from tkinter import messagebox as mb  # Импорт модуля для диалоговых окон
-
+lb=''
 def update_t_label(event):  # Функция обновления метки при выборе криптовалюты
     code=t_combobox.get()  # Получение выбранного кода криптовалюты из combobox
     name=cryptos[code]  # Получение полного названия по коду из словаря
@@ -36,6 +36,8 @@ def show_rate_popup(t_name, price_usd, price_rub):  # Функция созда�
     popup_canvas.create_text(250, 60, text=t_name, fill='white', font=title_font)  # Название криптовалюты
     
     popup_canvas.create_text(250, 140, text='Курс в долларах:', fill='lightgreen', font=label_font)  # Метка USD
+    global lb
+    lb=Label(popup, text=f'${price_usd:.2f} USD', fg='white', font=price_font)
     popup_canvas.create_text(250, 170, text=f'${price_usd:.2f} USD', fill='white', font=price_font)  # Цена в USD
     
     popup_canvas.create_text(250, 230, text='Курс в рублях:', fill='lightgreen', font=label_font)  # Метка RUB
@@ -111,6 +113,8 @@ t_label_text = canvas.create_text(200, 150, text='', fill='white', font=font_med
 
 button = Button(window, text='Получить курс обмена', bg='#2d5a2d', fg='white', font=font_medium, command=exchage)  # Создание кнопки с темно-зеленым фоном
 canvas.create_window(200, 220, window=button)  # Размещение кнопки на холсте
-canvas.create_text(200, 50, text='Выберите криптовалюту', fill='white', font=font_large)
+# canvas.create_text(200, 50, text='Выберите крюту', fill='white', font=font_large)
+lb
+
 
 window.mainloop()  # Запуск главного цикла обработки событий GUI
