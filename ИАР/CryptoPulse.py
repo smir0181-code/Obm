@@ -46,14 +46,14 @@ cryptos = {
             'litecoin': 'Litecoin (LTC)'
         }
 window=Tk()
-window.title('Курсы обмена валют')
+window.title('Курсы обмена криптовалют')
 window.geometry('360x300')
 
 
 
 
 
-Label(text='Целевая валюта').pack(padx=10,pady=10)
+Label(text='Популярные криптовалюты').pack(padx=10,pady=10)
 t_combobox=ttk.Combobox(values=list(cryptos.keys()))
 t_combobox.bind("<<ComboboxSelected>>",update_t_label)
 t_combobox.pack(padx=10, pady=10)
