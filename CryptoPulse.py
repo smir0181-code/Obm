@@ -5,8 +5,7 @@ import pprint
 from tkinter import*
 from tkinter import ttk
 from tkinter import messagebox as mb
-# lb=''
-# lr=''
+
 def update_t_label(event):
     code=t_combobox.get()
     name=cryptos[code]
@@ -63,7 +62,7 @@ canvas.pack(fill='both', expand=True)
 
 for i in range(350):
     color_value = int(50 + (i / 350) * 100)
-    color = f'#{color_value:02x}{min(255, color_value + 50):02x}{color_value:02x}'
+    color = f'#{color_value:02x}32{min(255, color_value + 50):02x}'
     canvas.create_line(0, i, 400, i, fill=color, width=1)
 
 font_large = ('Arial', 16, 'bold')
@@ -75,9 +74,9 @@ t_combobox=ttk.Combobox(window, values=list(cryptos.keys()), font=font_medium)
 t_combobox.bind("<<ComboboxSelected>>",update_t_label)
 canvas.create_window(200, 100, window=t_combobox)
 
-t_label_text = canvas.create_text(200, 150, text='', fill='white', font=font_medium)
+t_label_text = canvas.create_text(200, 140, text='', fill='white', font=font_medium)
 
-button = Button(window, text='Получить курс обмена', bg='#2d5a2d', fg='white', font=font_medium, command=exchage)
+button = Button(window, text='Получить курс обмена', bg="#412363", fg='white', font=font_medium, command=exchage)
 canvas.create_window(200, 280, window=button)
 
 window.mainloop()
