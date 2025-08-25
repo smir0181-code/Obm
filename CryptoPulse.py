@@ -11,11 +11,8 @@ def update_t_label(event):
     name=cryptos[code]
     canvas.itemconfig(t_label_text, text=name,font=('Arial', 16, 'bold'))
 
-def show_rate_popup(t_name, price_usd, price_rub):
-    # Удаляем предыдущие значения
-    canvas.delete("price_text")
-    
-    # Добавляем новые значения с тегом для удаления
+def show_rate_popup(price_usd, price_rub):
+    canvas.delete("price_text")    
     canvas.create_text(200, 180, text=f'{price_usd:.2f} USD', fill='white', font=('Arial', 12,'bold'), tags="price_text")
     canvas.create_text(200, 210, text=f'{price_rub:.2f} RUB', fill='white', font=('Arial', 12,'bold'), tags="price_text")
 
@@ -31,8 +28,7 @@ def exchage():
             if t_code in data:
                 price_usd = data[t_code]['usd']
                 price_rub = data[t_code]['rub']
-                t_name = cryptos[t_code]
-                show_rate_popup(t_name, price_usd, price_rub)
+                show_rate_popup( price_usd, price_rub)
             else:
                 mb.showerror('Ошибка!', f'Валюта {t_code} не найдена')
         except Exception as e:
@@ -49,7 +45,6 @@ cryptos = {
             'ripple': 'Ripple (XRP)',
             'polkadot': 'Polkadot (DOT)',
             'dogecoin': 'Dogecoin (DOGE)',
-            'shiba-inu': 'Shiba Inu (SHIB)',
             'litecoin': 'Litecoin (LTC)'
         }
 
